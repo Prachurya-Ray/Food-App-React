@@ -1,15 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { restaurentList } from "../../config";
 import RestaurantCard from "./Restaurant";
 import Shimmer from "./ShimmerUI";
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/helper";
+import useOnline from "../utils/useOnline";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [allRestaurant, setAllRestaurant] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchItem, setSearchItem] = useState();
   const [heading, setHeading] = useState("Top Sizzling");
+  const {user, setUser} =useContext(UserContext);
 
   useEffect(() => {
     getRestaurant();
@@ -31,10 +34,10 @@ const Body = () => {
   }
 
   const SearchBar = (
-    <div className="search-container">
+    <div className="search-container mt-8 flex justify-center">
       <input
         type="text"
-        className="search-bar"
+        className="search-bar p-1 me-4 bg-gray-100 rounded-lg ps-4 pe-10 hover:scale-105"
         placeholder="Search Here"
         value={searchItem}
         onChange={(e) => {
@@ -50,7 +53,7 @@ const Body = () => {
         }}
       />
       <button
-        className="search-btn"
+        className="search-btn bg-black text-white rounded-md px-3 py-1 hover:bg-gray-300 hover:text-black"
         onClick={() => {
           if (searchItem != null) {
             const datas = filterData(searchItem, allRestaurant);
@@ -60,6 +63,9 @@ const Body = () => {
       >
         Search
       </button>
+      {/* <input type="text" name="" id="" className="bg-slate-300" onChange={(e)=>{
+        setUser({ ...user,name:e.target.value})
+      }}/> */}
     </div>
   );
 
@@ -72,14 +78,16 @@ const Body = () => {
     );
   }
 
+  if (!allRestaurant) return null;
+
   return allRestaurant.length === 0 ? (
     <Shimmer />
   ) : (
-    <>
+    <div className="mt-32">
       {SearchBar}
 
-      <h2 className="trending-h2">{heading}</h2>
-      <div className="cards">
+      <h2 className="trending-h2 text-2xl ms-12 mt-2 font-serif">{heading}</h2>
+      <div className="cards flex flex-wrap mx-16 mt-10 gap-12 justify-between">
         {filteredRestaurant.map((restaurant) => {
           return (
             <Link
@@ -91,7 +99,7 @@ const Body = () => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 
