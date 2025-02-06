@@ -12,8 +12,8 @@ const RestaurentMenu = () => {
 
   const dispatch = useDispatch();
 
-  const handleAddItems = (itemName) => {
-    dispatch(addItems(itemName));
+  const handleAddItems = (item) => {
+    dispatch(addItems(item));
   };
 
   return !restaurant ? (
@@ -22,31 +22,32 @@ const RestaurentMenu = () => {
     <>
       <div className="flex justify-center mt-32">
         <div>
-          <h1>{restaurant?.cards[2]?.card?.card?.info?.name}</h1>
+          <h1 className="bold text-2xl font-serif">{restaurant?.cards[2]?.card?.card?.info?.name}</h1>
           <img
             src={
               IMG_CDN_URL +
               restaurant?.cards[2]?.card?.card?.info?.cloudinaryImageId
             }
-            style={{ width: "300px", height: "300px" }}
+            className="rounded-2xl shadow-lg hover:shadow-2xl cursor-pointer h-64 w-64"
           />
 
-          <h3>
+          <h3 className="font-semibold">
             Cuisines:{" "}
             {restaurant?.cards[2]?.card?.card?.info?.cuisines.join(", ")}
           </h3>
-          <h3>{restaurant?.cards[2]?.card?.card?.info?.costForTwoMessage}</h3>
+          <h3 className="font-semibold">{restaurant?.cards[2]?.card?.card?.info?.costForTwoMessage}</h3>
         </div>
-        <div style={{ marginTop: "10rem" }}>
-          <h2>Menu</h2>
-          <ul>
-            {restaurant?.cards[4]?.groupedCard?.cardGroupMap.REGULAR?.cards[1]?.card?.card?.carousel?.map(
+        <div className="ms-5 mt-6">
+          <h2 className="text-xl font-semibold">Menu</h2>
+          <ul className="flex flex-col gap-6">
+            {restaurant?.cards[4]?.groupedCard?.cardGroupMap.REGULAR?.cards[1]?.card?.card?.itemCards?.map(
               (data) => {
                 return (
                   
-                    <li key={data?.dish?.info?.id}>{data?.dish?.info?.name} <button
-                      className="bg-green-400 text-white px-2 py-1 rounded-md"
-                      onClick={() => handleAddItems(data?.dish?.info.name)}
+                    <li key={data?.card?.info?.id}>🍔 {data?.card?.info?.name} 
+                     <button
+                      className="bg-green-400 text-white ms-2 px-2 py-1 rounded-md"
+                      onClick={() => handleAddItems(data?.card?.info)}
                     >
                       Add
                     </button></li>

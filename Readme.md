@@ -6,3 +6,9 @@
 
 ### Showing different data like Location, KM, Star Ratings
 ![Showing Data](<Screenshot 2025-02-06 001951.png>)
+
+### Restaurant Menu
+![Restaurant Menu](<Screenshot 2025-02-06 182500.png>)
+
+### Cart
+![Cart](<Screenshot 2025-02-06 182239.png>)
