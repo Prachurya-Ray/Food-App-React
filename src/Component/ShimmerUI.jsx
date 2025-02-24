@@ -7,9 +7,6 @@ const Shimmer = ()=>{
             <div className="shimmer_item h-44 w-36 bg-gray-200 rounded-md"></div>
             <div className="shimmer_item h-44 w-36 bg-gray-200 rounded-md"></div>
             <div className="shimmer_item h-44 w-36 bg-gray-200 rounded-md"></div>
-
-
-
         </div>
     )
 }
