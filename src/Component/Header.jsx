@@ -12,7 +12,7 @@ const menuColor = {
 const Title = () => {
   return (
     <Link to="/">
-      <img className="logo h-24" src={logo} />
+      <img data-testid="logo" className="logo h-24" src={logo} />
     </Link>
   );
 };
@@ -42,16 +42,19 @@ const Header = () => {
             <Link to={"/foodiemart"}>Foodie Mart</Link>
           </li>
           <li className="text-black">
-          <Link to={"/cart"}>Cart </Link>
+            <Link to={"/cart"}>Cart </Link>
 
-            <span className="bg-red-500 text-white rounded-2xl px-2">
+            <span
+              data-testid="test-cart"
+              className="bg-red-500 text-white rounded-2xl px-2"
+            >
               {cartItems.length}
             </span>
           </li>
         </ul>
       </div>
       <div className="flex gap-2">
-        {isOnline ? "✅" : "🔴"}
+        <span data-testid="online-sts">{isOnline ? "✅" : "🔴"}</span>
         {user.name}
         <div className="signup-btn">
           {logedIn ? (

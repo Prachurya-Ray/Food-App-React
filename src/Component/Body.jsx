@@ -12,7 +12,7 @@ const Body = () => {
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchItem, setSearchItem] = useState();
   const [heading, setHeading] = useState("Top Sizzling");
-  const {user, setUser} =useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     getRestaurant();
@@ -36,6 +36,7 @@ const Body = () => {
   const SearchBar = (
     <div className="search-container mt-8 flex justify-center">
       <input
+        data-testid="search-field"
         type="text"
         className="search-bar p-1 me-4 bg-gray-100 rounded-lg ps-4 pe-10 hover:scale-105"
         placeholder="Search Here"
@@ -53,6 +54,7 @@ const Body = () => {
         }}
       />
       <button
+        data-testid="test-search-btn"
         className="search-btn bg-black text-white rounded-md px-3 py-1 hover:bg-gray-300 hover:text-black"
         onClick={() => {
           if (searchItem != null) {
